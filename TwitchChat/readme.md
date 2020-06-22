@@ -14,3 +14,7 @@ By pressing Ctrl + Shift + F10 (Can be customized), you can bring up the config 
 ## how to use
 Simply open up the config menu (Ctrl + Shift + F10 by default) enter your channel name and check enable.
 You can save these settings so you don't have to enter it in each time (recommended) simply scroll to the bottom and press the save button.
+
+# NOTICE
+A small oversight I made makes it so you have to enter the channel in lowercase letters ONLY.
+This requirement will be patched out in the next version.
