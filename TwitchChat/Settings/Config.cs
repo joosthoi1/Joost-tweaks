@@ -46,7 +46,7 @@ namespace TwitchChat.Settings
         public Config()
         {
             Version = 1;
-            TweakVersion = "0.0.0";
+            TweakVersion = "2.0.0";
             SilenceUpdates = false;
 
             ConfigX = 100.0f;

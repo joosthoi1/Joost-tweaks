@@ -3,6 +3,7 @@ using System.Net.Sockets;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace TwitchChat
 {
@@ -20,8 +21,8 @@ namespace TwitchChat
 
         private readonly int _port;
 
-        public string channel;
-        public string currentChannel;
+        public string channel = "";
+        public string currentChannel = "";
 
 
         private readonly int _maxRetries;
@@ -38,6 +39,25 @@ namespace TwitchChat
 
         private static string regex = @"^:(\w+)!.*#(\w+)\s+:(.+)$";
         private static Regex rgx = new Regex(regex, RegexOptions.IgnoreCase);
+        private static readonly List<string> defaultColors = new List<string>()
+        {
+            "#FF0000",
+            "#0000FF",
+            "#00FF00",
+            "#B22222",
+            "#FF7F50",
+            "#9ACD32",
+            "#FF4500",
+            "#2E8B57",
+            "#DAA520",
+            "#D2691E",
+            "#5F9EA0",
+            "#1E90FF",
+            "#FF69B4",
+            "#8A2BE2",
+            "#00FF7F"
+        };
+
 
         public TwitchIRC(string server, int port, string channel, int maxRetries = 3)
         {
@@ -61,9 +81,9 @@ namespace TwitchChat
         {
             if (this.channel != currentChannel)
             {
-                writer.WriteLine("PART #" + currentChannel);
+                writer.WriteLine("PART #" + currentChannel.ToLower());
                 writer.Flush();
-                writer.WriteLine("JOIN #" + this.channel);
+                writer.WriteLine("JOIN #" + this.channel.ToLower());
                 writer.Flush();
 
                 reader.DiscardBufferedData();
@@ -86,7 +106,7 @@ namespace TwitchChat
                 switch (splitInput[1])
                 {
                     case "001":
-                        writer.WriteLine("JOIN #" + this.channel);
+                        writer.WriteLine("JOIN #" + this.channel.ToLower());
                         writer.Flush();
                         writer.WriteLine("CAP REQ :twitch.tv/tags ");
                         writer.Flush();
@@ -110,14 +130,21 @@ namespace TwitchChat
                         dict[splitted[0]] = (splitted.Length > 1) ? splitted[1] : null;
                     }
                     dict["message"] = reMatches[4];
-                    dict["username"] = reMatches[2];
                     dict["channel"] = reMatches[3];
-
+                    if (String.IsNullOrEmpty(dict["color"]))
+                    {
+                        dict["color"] = GetColor(dict["display-name"]);
+                    }
 
 
                     MessageReceived?.Invoke(this, new MessageRecievedArgs(dict));
                 }
             }
+        }
+        public string GetColor(string name)
+        {
+            char[] nameChar = name.ToCharArray();
+            return defaultColors[(nameChar[0] + nameChar[name.Length-1]) % defaultColors.Count];
         }
         public void Update()
         {
