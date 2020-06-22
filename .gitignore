@@ -1,0 +1,9 @@
+.vs/
+CH-Libraries/
+packages/
+testing/
+TwitchChat/bin/
+TwitchChat/obj/
+TwitchChat/Properties/
+TwitchChat/App.config
+TwitchChat/packages.config
