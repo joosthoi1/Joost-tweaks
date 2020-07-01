@@ -34,7 +34,7 @@ namespace TwitchChat
 		private GUIStyle settingsHorizontalSliderThumbStyle;
 		private Vector2 settingsScrollPosition;
 		private Vector2 scrollPosition = Vector2.zero;
-		private Rect windowRect = new Rect(20, 20, 200, 500);
+		private Rect windowRect;
 		GUIStyle twitchStyle;
 		private float update;
 		private float textHeight;
@@ -82,6 +82,7 @@ namespace TwitchChat
 				twitchStyle = new GUIStyle();
 				twitchStyle.wordWrap = true;
 				twitchStyle.richText = true;
+				windowRect = new Rect(config.ChatX, config.ChatY, 200, 500);
 			}
 
 			if (config.Enabled)
@@ -95,7 +96,8 @@ namespace TwitchChat
 				}
 				windowRect.width = config.ChatWidth;
 				windowRect.height = config.ChatHeight;
-
+				config.ChatX = windowRect.x;
+				config.ChatY = windowRect.y;
 				if (windowRect.x + windowRect.width > Screen.width)
 				{
 					windowRect.x = Screen.width - windowRect.width;

@@ -30,6 +30,8 @@ namespace TwitchChat.Settings
         public float UpdateSpeed;
         public float ChatHeight;
         public float ChatWidth;
+        public float ChatX;
+        public float ChatY;
 
         public ColorablePositionableLabel DisplayImage;
 
@@ -73,6 +75,9 @@ namespace TwitchChat.Settings
             TwitchChannel = "";
             ChatHeight = Screen.height;
             ChatWidth = Screen.width/5;
+            ChatX = Screen.width;
+            ChatY= 0;
+            
             UpdateSpeed = 1000.0f;
 
             DisplayImage = new ColorablePositionableLabel
