@@ -16,5 +16,4 @@ Simply open up the config menu (Ctrl + Shift + F10 by default) enter your channe
 You can save these settings so you don't have to enter it in each time (recommended) simply scroll to the bottom and press the save button.
 
 # NOTICE
-A small oversight I made makes it so you have to enter the channel in lowercase letters ONLY.
-This requirement will be patched out in the next version.
+If the tweak is not working, try disabling your vpn.
