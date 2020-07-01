@@ -28,6 +28,7 @@ namespace TwitchChat.Settings
         public string TwitchChannel;
 
         public float UpdateSpeed;
+        public float ChatHeight;
         public float ChatWidth;
 
         public ColorablePositionableLabel DisplayImage;
@@ -46,7 +47,7 @@ namespace TwitchChat.Settings
         public Config()
         {
             Version = 1;
-            TweakVersion = "2.0.0";
+            TweakVersion = "3.0.0";
             SilenceUpdates = false;
 
             ConfigX = 100.0f;
@@ -70,7 +71,9 @@ namespace TwitchChat.Settings
 
             FontSize = 15;
             TwitchChannel = "";
-            UpdateSpeed = 1.0f;
+            ChatHeight = Screen.height;
+            ChatWidth = Screen.width/5;
+            UpdateSpeed = 1000.0f;
 
             DisplayImage = new ColorablePositionableLabel
             {
@@ -165,9 +168,16 @@ namespace TwitchChat.Settings
             TwitchChannel = GUILayout.TextField(TwitchChannel, styles.TextField);
 
             GUILayout.Label("Update Speed (ms)", styles.SmallLabel);
-            UpdateSpeed = (int)GUILayout.HorizontalSlider(FontSize, 0.0f, 100.0f, styles.HorizontalSlider, styles.HorizontalSliderThumb);
-            if (float.TryParse(GUILayout.TextField(FontSize.ToString(), styles.TextField), out float updateSpeed)) UpdateSpeed = updateSpeed/1000;
+            UpdateSpeed = (int)GUILayout.HorizontalSlider(UpdateSpeed, 0.0f, 10000.0f, styles.HorizontalSlider, styles.HorizontalSliderThumb);
+            if (float.TryParse(GUILayout.TextField(UpdateSpeed.ToString(), styles.TextField), out float updateSpeed)) UpdateSpeed = updateSpeed;
 
+            GUILayout.Label("Chat Width", styles.SmallLabel);
+            ChatWidth = (int)GUILayout.HorizontalSlider(ChatWidth, 0.0f, Screen.width, styles.HorizontalSlider, styles.HorizontalSliderThumb);
+            if (float.TryParse(GUILayout.TextField(ChatWidth.ToString(), styles.TextField), out float chatWidth)) ChatWidth = chatWidth;
+
+            GUILayout.Label("Chat Height", styles.SmallLabel);
+            ChatHeight = (int)GUILayout.HorizontalSlider(ChatHeight, 0.0f, Screen.height, styles.HorizontalSlider, styles.HorizontalSliderThumb);
+            if (float.TryParse(GUILayout.TextField(ChatHeight.ToString(), styles.TextField), out float chatHeight)) ChatHeight = chatHeight;
 
             GUILayout.Space(25.0f);
             GUILayout.Label("Enable/Disable Keybind", styles.LargeLabel);

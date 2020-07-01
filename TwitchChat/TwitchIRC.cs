@@ -96,26 +96,29 @@ namespace TwitchChat
 
                 string[] splitInput = inputLine.Split(':')[1].Split(' ');
 
-                if (splitInput[0] == "PING")
+                if (inputLine == "PING :tmi.twitch.tv")
                 {
-                    string PongReply = splitInput[1];
-                    writer.WriteLine("PONG " + PongReply);
+                    writer.WriteLine("PONG :tmi.twitch.tv");
                     writer.Flush();
+                    //continue;
+                }
+                else
+                {
+                    switch (splitInput[1])
+                    {
+                        case "001":
+                            writer.WriteLine("JOIN #" + this.channel.ToLower());
+                            writer.Flush();
+                            writer.WriteLine("CAP REQ :twitch.tv/tags ");
+                            writer.Flush();
+                            currentChannel = this.channel;
+                            break;
+                        default:
+                            break;
+
+                    }
                 }
                 
-                switch (splitInput[1])
-                {
-                    case "001":
-                        writer.WriteLine("JOIN #" + this.channel.ToLower());
-                        writer.Flush();
-                        writer.WriteLine("CAP REQ :twitch.tv/tags ");
-                        writer.Flush();
-                        currentChannel = this.channel;
-                        break;
-                    default:
-                        break;
-
-                }
                 if (inputLine.Contains("PRIVMSG"))
                 {
                     text = inputLine;

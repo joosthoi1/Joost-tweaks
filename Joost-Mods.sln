@@ -20,8 +20,11 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "Clone Hero", "..\..\clonehe
 		AttachLaunchAction = No
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardHero", "KeyboardHero\KeyboardHero.csproj", "{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Common\Common.projitems*{88ea8ac4-dda5-4343-8b44-b39ca6c20632}*SharedItemsImports = 4
 		Common\Common.projitems*{8bc6874b-773f-4914-aadc-dee82a721796}*SharedItemsImports = 13
 		Common\Common.projitems*{ed50831d-056c-48e5-8f09-8bb21fe5a3fd}*SharedItemsImports = 4
 	EndGlobalSection
@@ -44,6 +47,14 @@ Global
 		{249648ED-2923-45EE-8154-3BC73B4A2A96}.Debug|x64.ActiveCfg = Release|x64
 		{249648ED-2923-45EE-8154-3BC73B4A2A96}.Release|Any CPU.ActiveCfg = Release|x64
 		{249648ED-2923-45EE-8154-3BC73B4A2A96}.Release|x64.ActiveCfg = Release|x64
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Debug|x64.Build.0 = Debug|Any CPU
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Release|x64.ActiveCfg = Release|Any CPU
+		{88EA8AC4-DDA5-4343-8B44-B39CA6C20632}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

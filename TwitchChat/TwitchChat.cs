@@ -34,6 +34,7 @@ namespace TwitchChat
 		private GUIStyle settingsHorizontalSliderThumbStyle;
 		private Vector2 settingsScrollPosition;
 		private Vector2 scrollPosition = Vector2.zero;
+		private Rect windowRect = new Rect(20, 20, 200, 500);
 		GUIStyle twitchStyle;
 		private float update;
 		private float textHeight;
@@ -65,6 +66,7 @@ namespace TwitchChat
 
 		void OnGUI()
 		{
+			
 			if (settingsWindowStyle is null)
 			{
 				settingsWindowStyle = new GUIStyle(GUI.skin.window);
@@ -85,21 +87,35 @@ namespace TwitchChat
 			if (config.Enabled)
 			{
 				twitchStyle.fontSize = config.FontSize;
-				textHeight = twitchStyle.CalcHeight(new GUIContent(twitchChat), guiWidth-20.0f);
+				textHeight = twitchStyle.CalcHeight(new GUIContent(twitchChat), config.ChatWidth-20.0f);
 				if (textChanged)
 				{
 					scrollPosition = new Vector2(0, textHeight);
 					textChanged = false;
 				}
-				GUI.BeginGroup(new Rect(guiX, 0, guiWidth, Screen.height));
-				GUI.Box(new Rect(0, 0, guiWidth, Screen.height), "Twitch Chat");
-				scrollPosition = GUI.BeginScrollView(new Rect(10, 20, guiWidth-20, Screen.height-40), scrollPosition, new Rect(0, 0, guiWidth-40, textHeight), false, true);
-				GUI.Label(new Rect(0, 0, guiWidth - 40, Screen.height - 80), twitchChat, twitchStyle);
-				GUI.EndScrollView();
-				GUI.EndGroup();
+				windowRect.width = config.ChatWidth;
+				windowRect.height = config.ChatHeight;
+
+				if (windowRect.x + windowRect.width > Screen.width)
+				{
+					windowRect.x = Screen.width - windowRect.width;
+				}
+				else if (windowRect.x < 0) 
+				{
+					windowRect.x = 0;
+				}
+				if (windowRect.y + windowRect.height > Screen.height)
+				{
+					windowRect.y = Screen.height - windowRect.height;
+				}
+				else if (windowRect.y < 0)
+				{
+					windowRect.y = 0;
+				}
+				windowRect = GUI.Window(0, windowRect, DragTwitchWindow, "Twitch Chat");
+
 			}
-			
-			
+
 			if (config.ConfigWindowEnabled)
 			{
 				config.DrawLabelWindows();
@@ -112,10 +128,12 @@ namespace TwitchChat
 				ChangelogRect = GUILayout.Window(187001998, ChangelogRect, OnChangelogWindow, new GUIContent($"Twitch Chat Changelog"), settingsWindowStyle);
 			}
 		}
+
+
 		void LateUpdate()
 		{
 			update += Time.deltaTime;
-			if (update > config.UpdateSpeed)
+			if (update > config.UpdateSpeed/1000)
 			{
 				update = 0.0f;
 				if (irc.currentChannel != config.TwitchChannel)
@@ -135,6 +153,16 @@ namespace TwitchChat
 			Dictionary<string, string> messageDict = e.MessageDictionary;
 			twitchChat += $"<b><color={messageDict["color"]}FF>{messageDict["display-name"]}</color></b><color=#FFFFFFF>: {messageDict["message"]}</color>\n";
 			textChanged = true;
+		}
+		void DragTwitchWindow(int windowID)
+		{
+			// Make a very long rect that is 20 pixels tall.
+			// This will make the window be resizable by the top
+			// title bar - no matter how wide it gets.
+			GUI.DragWindow(new Rect(0, 0, config.ChatWidth, config.ChatHeight));
+			scrollPosition = GUI.BeginScrollView(new Rect(10, 20, config.ChatWidth - 20, config.ChatHeight - 40), scrollPosition, new Rect(0, 0, config.ChatWidth - 40, textHeight), false, true);
+			GUI.Label(new Rect(0, 0, config.ChatWidth - 40, config.ChatHeight - 80), twitchChat, twitchStyle);
+			GUI.EndScrollView();
 		}
 		private void OnWindow(int id)
 		{
