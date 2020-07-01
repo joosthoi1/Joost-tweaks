@@ -14,6 +14,7 @@ By pressing Ctrl + Shift + F10 (Can be customized), you can bring up the config 
 ## how to use
 Simply open up the config menu (Ctrl + Shift + F10 by default) enter your channel name and check enable.
 You can save these settings so you don't have to enter it in each time (recommended) simply scroll to the bottom and press the save button.
+You can save the x and y position by first dragging the window and then saving the config
 
 # NOTICE
 If the tweak is not working, try disabling your vpn.
