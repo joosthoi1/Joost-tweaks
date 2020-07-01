@@ -40,14 +40,15 @@ namespace TwitchChat
 		private float textHeight;
 		private bool textChanged = false;
 
+		private int chatID;
+		private int configID;
+		private int changelogID;
+
 		private Config config;
 		private Rect ChangelogRect;
+		private Rect ConfigRect;
 
 		#region Unity Methods
-		void Awake()
-		{
-			
-		}
 		void Start()
 		{
 			config = Config.LoadConfig();
@@ -83,6 +84,10 @@ namespace TwitchChat
 				twitchStyle.wordWrap = true;
 				twitchStyle.richText = true;
 				windowRect = new Rect(config.ChatX, config.ChatY, 200, 500);
+				ConfigRect = new Rect(config.ConfigX, config.ConfigY, 320.0f, 500.0f);
+				chatID = windowRect.GetHashCode();
+				configID = ConfigRect.GetHashCode();
+				changelogID = ChangelogRect.GetHashCode();
 			}
 
 			if (config.Enabled)
@@ -114,20 +119,22 @@ namespace TwitchChat
 				{
 					windowRect.y = 0;
 				}
-				windowRect = GUI.Window(0, windowRect, DragTwitchWindow, "Twitch Chat");
+				windowRect = GUI.Window(chatID, windowRect, DragTwitchWindow, "Twitch Chat");
 
 			}
 
 			if (config.ConfigWindowEnabled)
 			{
 				config.DrawLabelWindows();
-				var outputRect = GUILayout.Window(187001001, new Rect(config.ConfigX, config.ConfigY, 320.0f, 500.0f), OnWindow, new GUIContent("Twitch Chat Settings"), settingsWindowStyle);
+				ConfigRect.x = config.ConfigX;
+				ConfigRect.y = config.ConfigY;
+				var outputRect = GUILayout.Window(configID, ConfigRect, OnWindow, new GUIContent("Twitch Chat Settings"), settingsWindowStyle);
 				config.ConfigX = outputRect.x;
 				config.ConfigY = outputRect.y;
 			}
 			if (config.TweakVersion != FileVersionInfo.GetVersionInfo(Assembly.GetExecutingAssembly().Location).ProductVersion && !config.SeenChangelog)
 			{
-				ChangelogRect = GUILayout.Window(187001998, ChangelogRect, OnChangelogWindow, new GUIContent($"Twitch Chat Changelog"), settingsWindowStyle);
+				ChangelogRect = GUILayout.Window(changelogID, ChangelogRect, OnChangelogWindow, new GUIContent($"Twitch Chat Changelog"), settingsWindowStyle);
 			}
 		}
 

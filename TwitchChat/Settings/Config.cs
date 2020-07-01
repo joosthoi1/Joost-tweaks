@@ -49,7 +49,7 @@ namespace TwitchChat.Settings
         public Config()
         {
             Version = 1;
-            TweakVersion = "3.0.0";
+            TweakVersion = "3.1.0";
             SilenceUpdates = false;
 
             ConfigX = 100.0f;
