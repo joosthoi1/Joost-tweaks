@@ -9,7 +9,7 @@ By pressing Ctrl + Shift + F10 (Can be customized), you can bring up the config 
 - Make sure you install CHLauncher first!
   - Navigate to the `#ch-launcher` channel, and download the latest version of CHLauncher.exe.
   - Run it, and patch your version of Clone Hero with it. You should now have a `Tweaks` folder in your Clone Hero folder.
-- Download the latest version of `PerfectMode.dll` from [the releases page](https://github.com/joosthoi1/Joost-tweaks/releases) and place it in your tweaks folder.
+- Download the latest version of `TwitchChat.dll` from [the releases page](https://github.com/joosthoi1/Joost-tweaks/releases) and place it in your tweaks folder.
 
 ## how to use
 Simply open up the config menu (Ctrl + Shift + F10 by default) enter your channel name and check enable.
