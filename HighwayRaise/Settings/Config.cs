@@ -42,7 +42,7 @@ namespace HighwayRaise.Settings
         public Config()
         {
             Version = 1;
-            TweakVersion = "0.0.0";
+            TweakVersion = "1.0.0";
             SilenceUpdates = false;
 
             PanSpeed = 1000;

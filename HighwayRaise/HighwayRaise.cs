@@ -71,7 +71,11 @@ namespace HighwayRaise
             {
                 float angle = 7-(1/ panTime *update* 13) + curQuat.eulerAngles.x;
                 Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.left);
-                Camera.current.transform.rotation = Quaternion.Slerp(Camera.current.transform.rotation, newRotation, 1f);
+                foreach(Camera cam in Camera.allCameras)
+                {
+                    cam.transform.rotation = Quaternion.Slerp(Camera.current.transform.rotation, newRotation, 1f);
+                }
+
                 camCount += 1;
 
                 if (update >= panTime)
@@ -83,6 +87,10 @@ namespace HighwayRaise
                     update += Time.deltaTime;
                 }
             }
+        }
+        void Update()
+        {
+
         }
         void OnGUI()
         {
@@ -194,7 +202,7 @@ namespace HighwayRaise
             GUILayout.Space(15.0f);
 
             GUILayout.Label("Changelog", largeLabelStyle);
-            GUILayout.Label("Made this tweak", largeLabelStyle);
+            GUILayout.Label("Added the camera pan for all players", largeLabelStyle);
             GUILayout.Space(15.0f);
             GUILayout.Label($"Highway Raise v{Assembly.GetExecutingAssembly().GetName().Version.ToString()}");
 
