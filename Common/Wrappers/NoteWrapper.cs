@@ -96,6 +96,12 @@ namespace Common.Wrappers {
 		[WrapperProperty("\u031C\u030D\u0315\u031A\u0318\u0319\u030F\u0313\u031B\u031A\u0310")]
 		private static readonly PropertyInfo isExtendedSustainProperty;
 
+		public bool Green => (NoteMask & 1) != 0;
+		public bool Red => (NoteMask & (1 << 2 - 1)) != 0;
+		public bool Yellow => (NoteMask & (1 << 3 - 1)) != 0;
+		public bool Blue => (NoteMask & (1 << 4 - 1)) != 0;
+		public bool Orange => (NoteMask & (1 << 5 - 1)) != 0;
+
 		public NoteWrapper(object note) {
 			this.note = note;
 		}

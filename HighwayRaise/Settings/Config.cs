@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using UnityEngine;
 
-namespace TwitchChat.Settings
+namespace HighwayRaise.Settings
 {
     [Serializable]
     public class Config : IGUIConfigurable
@@ -24,14 +24,7 @@ namespace TwitchChat.Settings
         public bool Enabled;
         public KeyBind EnabledKeyBind;
 
-        public int FontSize;
-        public string TwitchChannel;
-
-        public float UpdateSpeed;
-        public float ChatHeight;
-        public float ChatWidth;
-        public float ChatX;
-        public float ChatY;
+        public float PanSpeed;
 
         public ColorablePositionableLabel DisplayImage;
 
@@ -49,36 +42,30 @@ namespace TwitchChat.Settings
         public Config()
         {
             Version = 1;
-            TweakVersion = "3.1.0";
+            TweakVersion = "0.0.0";
             SilenceUpdates = false;
+
+            PanSpeed = 1000;
 
             ConfigX = 100.0f;
             ConfigY = 100.0f;
             ConfigKeyBind = new KeyBind
             {
-                Key = KeyCode.F10,
+                Key = KeyCode.F11,
                 Ctrl = true,
                 Alt = false,
                 Shift = true
             };
 
-            Enabled = false;
+            Enabled = true;
             EnabledKeyBind = new KeyBind
             {
-                Key = KeyCode.F10,
+                Key = KeyCode.F11,
                 Ctrl = false,
                 Alt = false,
                 Shift = false
             };
 
-            FontSize = 15;
-            TwitchChannel = "";
-            ChatHeight = Screen.height;
-            ChatWidth = Screen.width/5;
-            ChatX = Screen.width;
-            ChatY= 0;
-            
-            UpdateSpeed = 1000.0f;
 
             DisplayImage = new ColorablePositionableLabel
             {
@@ -95,8 +82,8 @@ namespace TwitchChat.Settings
 
         public static Config LoadConfig()
         {
-            var configFilePath = new FileInfo(Path.Combine(Environment.CurrentDirectory, "Tweaks", "TwitchChatConfig.xml"));
-            
+            var configFilePath = new FileInfo(Path.Combine(Environment.CurrentDirectory, "Tweaks", "HighwayRaiseConfig.xml"));
+
             if (configFilePath.Exists)
             {
                 var configString = File.ReadAllText(configFilePath.FullName);
@@ -115,9 +102,10 @@ namespace TwitchChat.Settings
         }
         public void SaveConfig()
         {
-            var configFilePath = new FileInfo(Path.Combine(Environment.CurrentDirectory, "Tweaks", "TwitchChatConfig.xml"));
+            var configFilePath = new FileInfo(Path.Combine(Environment.CurrentDirectory, "Tweaks", "HighwayRaiseConfig.xml"));
 
-            if (configFilePath.Exists) {
+            if (configFilePath.Exists)
+            {
                 configFilePath.Delete();
             }
             var serializer = new XmlSerializer(typeof(Config));
@@ -156,7 +144,7 @@ namespace TwitchChat.Settings
         {
             if (DraggableLabelsEnabled)
             {
-                DisplayImage.DrawLabelWindow(187301902);
+                DisplayImage.DrawLabelWindow(187921002);
             }
         }
 
@@ -165,24 +153,9 @@ namespace TwitchChat.Settings
             GUILayout.Label("Settings", styles.LargeLabel);
             Enabled = GUILayout.Toggle(Enabled, "Enabled", styles.Toggle);
 
-            GUILayout.Label("Font Size", styles.SmallLabel);
-            FontSize = (int)GUILayout.HorizontalSlider(FontSize, 0.0f, 100.0f, styles.HorizontalSlider, styles.HorizontalSliderThumb);
-            if (int.TryParse(GUILayout.TextField(FontSize.ToString(), styles.TextField), out int fontSize)) FontSize = fontSize;
-
-            GUILayout.Label("Twitch Channel", styles.SmallLabel);
-            TwitchChannel = GUILayout.TextField(TwitchChannel, styles.TextField);
-
-            GUILayout.Label("Update Speed (ms)", styles.SmallLabel);
-            UpdateSpeed = (int)GUILayout.HorizontalSlider(UpdateSpeed, 0.0f, 10000.0f, styles.HorizontalSlider, styles.HorizontalSliderThumb);
-            if (float.TryParse(GUILayout.TextField(UpdateSpeed.ToString(), styles.TextField), out float updateSpeed)) UpdateSpeed = updateSpeed;
-
-            GUILayout.Label("Chat Width", styles.SmallLabel);
-            ChatWidth = (int)GUILayout.HorizontalSlider(ChatWidth, 0.0f, Screen.width, styles.HorizontalSlider, styles.HorizontalSliderThumb);
-            if (float.TryParse(GUILayout.TextField(ChatWidth.ToString(), styles.TextField), out float chatWidth)) ChatWidth = chatWidth;
-
-            GUILayout.Label("Chat Height", styles.SmallLabel);
-            ChatHeight = (int)GUILayout.HorizontalSlider(ChatHeight, 0.0f, Screen.height, styles.HorizontalSlider, styles.HorizontalSliderThumb);
-            if (float.TryParse(GUILayout.TextField(ChatHeight.ToString(), styles.TextField), out float chatHeight)) ChatHeight = chatHeight;
+            GUILayout.Label("Pan Time (ms)", styles.SmallLabel);
+            PanSpeed = (int)GUILayout.HorizontalSlider(PanSpeed, 0.0f, 10000, styles.HorizontalSlider, styles.HorizontalSliderThumb);
+            if (float.TryParse(GUILayout.TextField(PanSpeed.ToString(), styles.TextField), out float panSpeed)) PanSpeed = panSpeed;
 
             GUILayout.Space(25.0f);
             GUILayout.Label("Enable/Disable Keybind", styles.LargeLabel);
