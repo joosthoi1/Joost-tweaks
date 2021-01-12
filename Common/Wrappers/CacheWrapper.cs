@@ -6,18 +6,22 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Common.Wrappers {
+namespace Common.Wrappers
+{
 	[Wrapper("\u030F\u031A\u0311\u031B\u0314\u0319\u031B\u0312\u030F\u030E\u0319")]
-	internal class CacheWrapper {
+	internal class CacheWrapper
+	{
 		public readonly object cache;
 
-		public CacheWrapper(object cache) {
+		public CacheWrapper(object cache)
+		{
 			this.cache = cache;
 		}
 
 		#region Constructors
 
-		public CacheWrapper() {
+		public CacheWrapper()
+		{
 			cache = defaultConstructor.Invoke(Array.Empty<object>());
 		}
 		[WrapperConstructor()]
@@ -80,7 +84,8 @@ namespace Common.Wrappers {
 		#region Enumerations
 
 		//\u0315\u0310\u0319\u0315\u0312\u030D\u0312\u0313\u0312\u0314\u0311
-		public enum CacheState {
+		public enum CacheState
+		{
 			ReadingCache,
 			GettingPaths,
 			ScanningFolders,

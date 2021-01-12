@@ -9,12 +9,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Common.Wrappers {
+namespace Common.Wrappers
+{
 	[Wrapper(typeof(SongScan))]
-	internal class SongScanWrapper {
+	internal class SongScanWrapper
+	{
 		public readonly SongScan songScan;
 
-		public SongScanWrapper(SongScan songScan) {
+		public SongScanWrapper(SongScan songScan)
+		{
 			this.songScan = songScan;
 		}
 

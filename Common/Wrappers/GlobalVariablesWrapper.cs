@@ -94,6 +94,10 @@ namespace Common.Wrappers {
 		[WrapperField("\u0310\u030E\u030E\u0318\u0311\u0314\u0314\u0310\u0314\u0317\u0312")]
 		private static readonly FieldInfo gameEnableCursorField;
 
+		public SongEntryWrapper songInfo => new SongEntryWrapper((SongEntry)songInfoField.GetValue(globalVariables));
+		[WrapperField("\u0310\u030E\u0313\u0310\u0313\u0314\u030D\u031B\u0313\u031C\u0313")]
+		private static readonly FieldInfo songInfoField;
+
 		public GameSettingWrapper videoVsync => new GameSettingWrapper(videoVsyncField.GetValue(globalVariables));
 		[WrapperField("\u0310\u030F\u030F\u0314\u0315\u0311\u030E\u030F\u0313\u031C\u031C")]
 		private static readonly FieldInfo videoVsyncField;

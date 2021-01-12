@@ -116,6 +116,7 @@ namespace HighwayRaise.Settings
         }
         public void HandleInput()
         {
+            
             if (ConfigKeyBind.IsPressed && !ConfigKeyBind.JustSet)
             {
                 ConfigWindowEnabled = !ConfigWindowEnabled;
