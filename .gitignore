@@ -21,3 +21,8 @@ ChorusTweak/packages.config
 BepinexDebugTweak/
 DebugTweak/
 ExtraLyrics/
+MoveLyrics/bin/
+MoveLyrics/obj/
+MoveLyrics/Properties/
+MoveLyrics/App.config
+MoveLyrics/packages.config

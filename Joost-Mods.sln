@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExtraLyrics", "ExtraLyrics\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BepinexDebugTweak", "BepinexDebugTweak\BepinexDebugTweak.csproj", "{4BADC63A-8E68-442B-9E88-F08DBE6E4A7A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MoveLyrics", "MoveLyrics\MoveLyrics.csproj", "{941672EB-192A-4B62-AE4A-D60415F9E338}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		Common\Common.projitems*{0d4d2688-ffd0-4c8a-b9bc-b2e34538db4e}*SharedItemsImports = 4
@@ -119,6 +121,14 @@ Global
 		{4BADC63A-8E68-442B-9E88-F08DBE6E4A7A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4BADC63A-8E68-442B-9E88-F08DBE6E4A7A}.Release|x64.ActiveCfg = Release|Any CPU
 		{4BADC63A-8E68-442B-9E88-F08DBE6E4A7A}.Release|x64.Build.0 = Release|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Debug|x64.Build.0 = Debug|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Release|x64.ActiveCfg = Release|Any CPU
+		{941672EB-192A-4B62-AE4A-D60415F9E338}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
