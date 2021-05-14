@@ -20,9 +20,14 @@ ChorusTweak/App.config
 ChorusTweak/packages.config
 BepinexDebugTweak/
 DebugTweak/
-ExtraLyrics/
+ExtraLyrics/bin/
+ExtraLyrics/obj/
+ExtraLyrics/Properties/
+ExtraLyrics/App.config
+ExtraLyrics/packages.config
 MoveLyrics/bin/
 MoveLyrics/obj/
 MoveLyrics/Properties/
 MoveLyrics/App.config
 MoveLyrics/packages.config
+ExtraLyrics_old/

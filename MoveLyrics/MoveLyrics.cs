@@ -78,19 +78,15 @@ namespace MoveLyrics
         {
             string sceneName = SceneManager.GetActiveScene().name;
 
-            if (this.sceneChanged && config.Enabled)
+            if (this.sceneChanged)
             {
-                Logger.LogDebug("Scene changed");
                 this.sceneChanged = false;
-                if (sceneName == "Gameplay")
+                if (sceneName == "Gameplay" && config.Enabled)
                 {
                     lyricsTransform = GameObject.Find("Lyrics").transform;
 
                     lyricsTransform.position = new Vector2(config.Position.X, (float)Screen.height / 1.65f - (float)config.Position.Y);
                 }
-            }
-            if (sceneName == "Gameplay")
-            {
             }
             config.HandleInput();
         }
@@ -114,7 +110,7 @@ namespace MoveLyrics
                 var outputRect = GUILayout.Window(187000040, new Rect(config.ConfigX, config.ConfigY, 320.0f, 807.0f), OnWindow, new GUIContent("Extra Song UI Settings"), settingsWindowStyle);
                 config.ConfigX = outputRect.x;
                 config.ConfigY = outputRect.y;
-                if (!(lyricsTransform == null))
+                if (!(lyricsTransform == null) && config.Enabled)
                 {
                     lyricsTransform.position = new Vector2(config.Position.X, (float)Screen.height/1.65f- (float)config.Position.Y);
                 }
@@ -159,6 +155,9 @@ namespace MoveLyrics
             {
                 settingsScrollPosition = GUILayout.BeginScrollView(settingsScrollPosition);
                 GUILayout.Label("Settings", largeLabelStyle);
+
+                GUILayout.Label("Move lyrics", largeLabelStyle);
+                config.Enabled = GUILayout.Toggle(config.Enabled, "Enabled", styles.Toggle);
 
                 GUILayout.Space(25.0f);
                 GUILayout.Label("Enable/Disable Keybind", largeLabelStyle);

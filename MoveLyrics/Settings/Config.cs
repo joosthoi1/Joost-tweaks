@@ -61,9 +61,9 @@ namespace MoveLyrics.Settings
             EnabledKeyBind = new KeyBind
             {
                 Key = KeyCode.F9,
-                Ctrl = true,
+                Ctrl = false,
                 Alt = false,
-                Shift = true
+                Shift = false
             };
         }
 
