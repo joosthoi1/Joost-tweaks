@@ -69,6 +69,9 @@
     <Reference Include="Google.Protobuf">
       <HintPath>..\CH-Libraries\Google.Protobuf.dll</HintPath>
     </Reference>
+    <Reference Include="Melanchall.DryWetMidi, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Melanchall.DryWetMidi.5.2.0\lib\net45\Melanchall.DryWetMidi.dll</HintPath>
+    </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>F:\games\Clone Hero folders\BepInEx\core\Mono.Cecil.dll</HintPath>
     </Reference>
@@ -319,10 +322,12 @@
     <Compile Include="Command.cs" />
     <Compile Include="ExtraLyrics.cs" />
     <Compile Include="LyricsParser.cs" />
+    <Compile Include="NewMidiParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

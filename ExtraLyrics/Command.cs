@@ -6,14 +6,13 @@ using System.Threading.Tasks;
 
 namespace ExtraLyrics
 {
-    struct LyricsCommand
+    struct ChartCommand
     {
         public string Command;
-        public int Tick;
+        public long Tick;
         public string Parameter;
-        public bool NoNewLine;
         public string OriginalCommand;
-        public float TimeInMs;
+        public double TimeInMs;
 
         public override string ToString()
         {
@@ -21,7 +20,7 @@ namespace ExtraLyrics
                 $"\tCommand:{this.Command},\n" +
                 $"\tTick:{this.Tick},\n" +
                 $"\tParameter:{this.Parameter},\n" +
-                $"\tNoNewLine:{this.NoNewLine},\n" +
+                $"\tOriginalCommand:{this.OriginalCommand},\n" +
                 "}";
         }
     }
